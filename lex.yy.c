@@ -286,21 +286,21 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 #define YY_END_OF_BUFFER 62
 static yyconst short int yy_accept[185] =
     {   0,
-        3,    3,    0,    0,    0,    0,   62,   60,    2,    1,
-       20,   56,   10,   60,   24,   25,    8,    6,   22,    7,
-       23,    9,    3,    3,   21,   11,   15,   13,   46,   46,
+       44,   44,    0,    0,    0,    0,   62,   60,    2,    1,
+       18,   56,    8,   60,   22,   23,    6,    4,   20,    5,
+       21,    7,   44,   44,   19,    9,   13,   11,   46,   46,
        46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
-       60,   51,   49,   51,   55,   53,   55,   55,   17,   56,
-        5,   18,   58,   48,   27,   26,   47,    3,   57,    4,
-        3,   12,   16,   14,   46,   46,   46,   39,   46,   46,
-       46,   32,   34,   46,   46,   46,   46,   46,   46,   46,
-       46,   19,   50,   52,   54,   48,   48,   47,   57,   57,
-        4,   46,   46,   46,   46,   46,   45,   42,   28,   33,
+       60,   51,   49,   51,   55,   53,   55,   55,   15,   56,
+        3,   16,   58,   48,   25,   24,   47,   44,   57,   45,
+       44,   10,   14,   12,   46,   46,   46,   37,   46,   46,
+       46,   30,   32,   46,   46,   46,   46,   46,   46,   46,
+       46,   17,   50,   52,   54,   48,   48,   47,   57,   57,
+       45,   46,   46,   46,   46,   46,   43,   40,   26,   31,
 
-       46,   46,   46,   46,   46,   46,   46,   46,   46,   30,
-       46,   46,   36,   40,   46,   35,   46,   37,   46,   46,
-       46,   46,   44,   46,   46,   46,   38,   41,   46,   46,
-       31,   43,   29,   46,   46,   46,   46,   46,   46,   46,
+       46,   46,   46,   46,   46,   46,   46,   46,   46,   28,
+       46,   46,   34,   38,   46,   33,   46,   35,   46,   46,
+       46,   46,   42,   46,   46,   46,   36,   39,   46,   46,
+       29,   41,   27,   46,   46,   46,   46,   46,   46,   46,
        46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
        46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
        46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
@@ -512,13 +512,16 @@ char *yytext;
     #include <string.h>
     #include <stdio.h>
     #include <stdlib.h>
+    #include <stdbool.h>
+    #include "parser.tab.c"
+
 
     int brojac =1;
 #define komJedna 1
 
 #define ViseKom 2
 
-#line 522 "lex.yy.c"
+#line 525 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -669,10 +672,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 12 "tester.l"
+#line 15 "tester.l"
 
 
-#line 676 "lex.yy.c"
+#line 679 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -757,257 +760,263 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "tester.l"
+#line 17 "tester.l"
 {brojac++;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "tester.l"
+#line 18 "tester.l"
 {}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "tester.l"
-{int broj = atoi(yytext); printf("dekadno -> %d", broj);}
+#line 24 "tester.l"
+{printf("string -> %s", yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "tester.l"
-{int broj = strtol(yytext+2, NULL, 16); printf("heksadecimalno -> %d", broj);}
+#line 26 "tester.l"
+{return TOKEN_PLUS;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 22 "tester.l"
-{printf("string -> %s", yytext);}
+#line 27 "tester.l"
+{return TOKEN_MINUS;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "tester.l"
-{printf(" + ");}
+#line 28 "tester.l"
+{return TOKEN_PUTA;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 25 "tester.l"
-{printf(" - ");}
+#line 29 "tester.l"
+{return TOKEN_PODIJELJENO;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 26 "tester.l"
-{printf(" * ");}
+#line 30 "tester.l"
+{return TOKEN_MOD;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 27 "tester.l"
-{printf(" / ");}
+#line 31 "tester.l"
+{return TOKEN_MANJE;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 28 "tester.l"
-{printf(" % ");}
+#line 32 "tester.l"
+{return TOKEN_MANJE_JEDNAKO;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 29 "tester.l"
-{printf(" < ");}
+#line 33 "tester.l"
+{return TOKEN_VECE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 30 "tester.l"
-{printf(" <= ");}
+#line 34 "tester.l"
+{return TOKEN_VECE_JEDNAKO;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 31 "tester.l"
-{printf(" > ");}
+#line 35 "tester.l"
+{return TOKEN_JEDNAKO;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 32 "tester.l"
-{printf(" >= ");}
+#line 36 "tester.l"
+{return TOKEN_JE_JEDNAKO;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 33 "tester.l"
-{printf(" = ");}
+#line 37 "tester.l"
+{return TOKEN_NIJE_JEDNAKO;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 34 "tester.l"
-{printf(" == ");}
+#line 38 "tester.l"
+{return TOKEN_I;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 35 "tester.l"
-{printf(" != ");}
+#line 39 "tester.l"
+{return TOKEN_ILI;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 36 "tester.l"
-{printf(" && ");}
+#line 40 "tester.l"
+{return TOKEN_NIJE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 37 "tester.l"
-{printf(" || ");}
+#line 41 "tester.l"
+{return TOKEN_TACKA_ZAREZ;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 38 "tester.l"
-{printf(" ! ");}
+#line 42 "tester.l"
+{return TOKEN_ZAREZ;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 39 "tester.l"
-{
-                printf(" ; ");
-                printf("\n");
-
-            }
+#line 43 "tester.l"
+{return TOKEN_TACKA;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 44 "tester.l"
-{printf(" , ");}
+{return TOKEN_OTVORENA_ZAGRADA;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 45 "tester.l"
-{printf(" . ");}
+{return TOKEN_ZATVORENA_ZAGRADA;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 46 "tester.l"
-{printf(" ( ");}
-	YY_BREAK
-case 25:
-YY_RULE_SETUP
-#line 47 "tester.l"
-{printf(" ) ");}
-	YY_BREAK
-case 26:
-YY_RULE_SETUP
-#line 50 "tester.l"
+#line 48 "tester.l"
 {  
             BEGIN(komJedna);
         }
 	YY_BREAK
-case 27:
+case 25:
 YY_RULE_SETUP
-#line 54 "tester.l"
+#line 52 "tester.l"
 {   
             printf("Pocetak viselinijskog komentara na liniji -> %d\n", brojac);
             BEGIN(ViseKom);
         }
 	YY_BREAK
+case 26:
+YY_RULE_SETUP
+#line 59 "tester.l"
+{return TOKEN_INT;}
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 60 "tester.l"
+{return TOKEN_STRING;}
+	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 61 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_BOOL;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 62 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_DOUBLE;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 63 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_IF;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 64 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_LET;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 65 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_IN;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 66 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_SKIP;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 67 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_ELSE;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 68 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_THEN;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 69 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_WHILE;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 70 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_DO;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 71 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_READ;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 72 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_WRITE;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 73 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_FOR;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 74 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_RETURN;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 75 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_BREAK;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 76 "tester.l"
-{printf("%s\n", yytext);}
+{return TOKEN_END;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 77 "tester.l"
-{printf("%s\n", yytext);}
+#line 78 "tester.l"
+{
+                                            int broj = atoi(yytext);
+                                            
+                                            return TOKEN_VRIJEDNOST_INT;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 78 "tester.l"
-{printf("%s\n", yytext);}
+#line 83 "tester.l"
+{
+                                            int broj = strtol(yytext+2, NULL, 16);
+                                            
+                                            return TOKEN_VRIJEDNOST_INT;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 81 "tester.l"
-{printf("identifikator-> %s", yytext);}
+#line 88 "tester.l"
+{return TOKEN_VRIJEDNOST_STRING;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 82 "tester.l"
-{printf("double -> %s", yytext);}
+#line 89 "tester.l"
+{
+                                               
+                                                return TOKEN_VRIJEDNOST_DOUBLE;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 83 "tester.l"
-{printf("eksponencijalni double -> %s", yytext);}
+#line 92 "tester.l"
+{
+                                                
+                                                return TOKEN_VRIJEDNOST_DOUBLE;}
 	YY_BREAK
 
 case 49:
 YY_RULE_SETUP
-#line 87 "tester.l"
+#line 98 "tester.l"
 {
             printf("zakomentarisana linija broj -> %d\n", brojac);
             brojac++;
@@ -1016,21 +1025,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 92 "tester.l"
+#line 103 "tester.l"
 {
             printf("Pogresan ulaz, nije dozvoljeno ugnjezdavanje komentara na liniji -> %d\n", brojac);
         }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 95 "tester.l"
+#line 106 "tester.l"
 {} 
 	YY_BREAK
 
 
 case 52:
 YY_RULE_SETUP
-#line 101 "tester.l"
+#line 112 "tester.l"
 {
                     printf("Kraj viselinijskog komentara na liniji -> %d\n", brojac);
                     BEGIN(INITIAL);
@@ -1038,55 +1047,55 @@ YY_RULE_SETUP
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 105 "tester.l"
+#line 116 "tester.l"
 { 
                     brojac++;
                 }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 108 "tester.l"
+#line 119 "tester.l"
 {
                     printf("Pogresan ulaz, nije dozvoljeno ugnjezdavanje komentara -> \n");
                 }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 111 "tester.l"
+#line 122 "tester.l"
 {}
 	YY_BREAK
 
 case 56:
 YY_RULE_SETUP
-#line 115 "tester.l"
+#line 126 "tester.l"
 {printf("Pogresan ulaz, nezatvoren string na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 116 "tester.l"
+#line 127 "tester.l"
 {printf("Pogresan ulaz, pogresno upisan double na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 117 "tester.l"
+#line 128 "tester.l"
 {printf("Pogresan ulaz, pogresno upisan double na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 118 "tester.l"
+#line 129 "tester.l"
 {if(yyleng>31){printf("Pogresan ulaz, ime duze od dozvoljenog na liniji -> %d\n", brojac);}}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 119 "tester.l"
+#line 130 "tester.l"
 {printf("Pogresan ulaz, neobradjeni izraz na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 121 "tester.l"
+#line 132 "tester.l"
 ECHO;
 	YY_BREAK
-#line 1090 "lex.yy.c"
+#line 1099 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(komJedna):
 case YY_STATE_EOF(ViseKom):
@@ -1974,12 +1983,11 @@ int main()
 	return 0;
 	}
 #endif
-#line 121 "tester.l"
+#line 132 "tester.l"
 
 
-int main(){
-    yylex();
-    return 0;
-}
+
+
+
 
 

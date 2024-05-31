@@ -2,6 +2,9 @@
     #include <string.h>
     #include <stdio.h>
     #include <stdlib.h>
+    #include <stdbool.h>
+    #include "parser.tab.c"
+
 
     int brojac =1;
 %}
@@ -15,36 +18,31 @@
 [ \t\r\n]   {}
 
 
-([0-9]*)                                  {int broj = atoi(yytext); printf("dekadno -> %d", broj);}
-(0x|0X)[0-9A-Fa-f]*                         {int broj = strtol(yytext+2, NULL, 16); printf("heksadecimalno -> %d", broj);}
+
 
 
 \"[^\n\"]*\"    {printf("string -> %s", yytext);}
 
-"+"         {printf(" + ");}
-"-"         {printf(" - ");}
-"*"         {printf(" * ");}
-"/"         {printf(" / ");}
-"%"         {printf(" % ");}
-"<"         {printf(" < ");}
-"<="        {printf(" <= ");}
-">"         {printf(" > ");}
-">="        {printf(" >= ");}
-"="         {printf(" = ");}
-"=="        {printf(" == ");}
-"!="        {printf(" != ");}
-"&&"        {printf(" && ");}
-"||"        {printf(" || ");}
-"!"         {printf(" ! ");}
-";"         {
-                printf(" ; ");
-                printf("\n");
-
-            }
-","         {printf(" , ");}
-"."         {printf(" . ");}
-"("         {printf(" ( ");}
-")"         {printf(" ) ");}
+"+"         {return TOKEN_PLUS;}
+"-"         {return TOKEN_MINUS;}
+"*"         {return TOKEN_PUTA;}
+"/"         {return TOKEN_PODIJELJENO;}
+"%"         {return TOKEN_MOD;}
+"<"         {return TOKEN_MANJE;}
+"<="        {return TOKEN_MANJE_JEDNAKO;}
+">"         {return TOKEN_VECE;}
+">="        {return TOKEN_VECE_JEDNAKO;}
+"="         {return TOKEN_JEDNAKO;}
+"=="        {return TOKEN_JE_JEDNAKO;}
+"!="        {return TOKEN_NIJE_JEDNAKO;}
+"&&"        {return TOKEN_I;}
+"||"        {return TOKEN_ILI;}
+"!"         {return TOKEN_NIJE;}
+";"         {return TOKEN_TACKA_ZAREZ;}
+","         {return TOKEN_ZAREZ;}
+"."         {return TOKEN_TACKA;}
+"("         {return TOKEN_OTVORENA_ZAGRADA;}
+")"         {return TOKEN_ZATVORENA_ZAGRADA;}
 
 
 "//"    {  
@@ -58,29 +56,42 @@
 
 
 
-"INT"       {printf("%s\n", yytext);}
-"STRING"    {printf("%s\n", yytext);}
-"BOOL"      {printf("%s\n", yytext);}
-"DOUBLE"    {printf("%s\n", yytext);}
-"IF"        {printf("%s\n", yytext);}
-"LET"       {printf("%s\n", yytext);}
-"IN"        {printf("%s\n", yytext);}
-"SKIP"      {printf("%s\n", yytext);}
-"ELSE"      {printf("%s\n", yytext);}
-"THEN"      {printf("%s\n", yytext);}
-"WHILE"     {printf("%s\n", yytext);}
-"DO"        {printf("%s\n", yytext);}
-"READ"      {printf("%s\n", yytext);}
-"WRITE"     {printf("%s\n", yytext);}
-"FOR"       {printf("%s\n", yytext);}
-"RETURN"    {printf("%s\n", yytext);}
-"BREAK"     {printf("%s\n", yytext);}
-"END"       {printf("%s\n", yytext);}
+"INT"       {return TOKEN_INT;}
+"STRING"    {return TOKEN_STRING;}
+"BOOL"      {return TOKEN_BOOL;}
+"DOUBLE"    {return TOKEN_DOUBLE;}
+"IF"        {return TOKEN_IF;}
+"LET"       {return TOKEN_LET;}
+"IN"        {return TOKEN_IN;}
+"SKIP"      {return TOKEN_SKIP;}
+"ELSE"      {return TOKEN_ELSE;}
+"THEN"      {return TOKEN_THEN;}
+"WHILE"     {return TOKEN_WHILE;}
+"DO"        {return TOKEN_DO;}
+"READ"      {return TOKEN_READ;}
+"WRITE"     {return TOKEN_WRITE;}
+"FOR"       {return TOKEN_FOR;}
+"RETURN"    {return TOKEN_RETURN;}
+"BREAK"     {return TOKEN_BREAK;}
+"END"       {return TOKEN_END;}
 
+([0-9]*)                                    {
+                                            int broj = atoi(yytext);
+                                            
+                                            return TOKEN_VRIJEDNOST_INT;}
 
-[a-zA-Z_][a-zA-Z0-9_]{0,29}                 {printf("identifikator-> %s", yytext);}
-[0-9]+\.[0-9]*                              {printf("double -> %s", yytext);}
-([0-9]*)\.[0-9]*[eE][+-]?[0-9]?         {printf("eksponencijalni double -> %s", yytext);}
+(0x|0X)[0-9A-Fa-f]*                         {
+                                            int broj = strtol(yytext+2, NULL, 16);
+                                            
+                                            return TOKEN_VRIJEDNOST_INT;}
+
+[a-zA-Z_][a-zA-Z0-9_]{0,29}                 {return TOKEN_VRIJEDNOST_STRING;}
+[0-9]+\.[0-9]*                              {
+                                               
+                                                return TOKEN_VRIJEDNOST_DOUBLE;}
+([0-9]*)\.[0-9]*[eE][+-]?[0-9]?             {
+                                                
+                                                return TOKEN_VRIJEDNOST_DOUBLE;}
 
 <komJedna>{
 
@@ -120,9 +131,8 @@
 
 %%
 
-int main(){
-    yylex();
-    return 0;
-}
+
+
+
 
 

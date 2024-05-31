@@ -7,6 +7,10 @@ asd = 15.e5;
 "PEMF";
 //
 /*
+flex tester.l
+bison -d parser.y
+gcc -o rad lex.yy.c -lfl
+rad < test.txt
 
 */
 12E+2;

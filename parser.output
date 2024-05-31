@@ -1,0 +1,879 @@
+Terminals unused in grammar
+
+   TOKEN_INT
+   TOKEN_STRING
+   TOKEN_DOUBLE
+   TOKEN_BOOL
+   TOKEN_NIJE
+   TOKEN_MANJE
+   TOKEN_MANJE_JEDNAKO
+   TOKEN_VECE
+   TOKEN_VECE_JEDNAKO
+   TOKEN_JE_JEDNAKO
+   TOKEN_NIJE_JEDNAKO
+   TOKEN_ZAREZ
+   TOKEN_TACKA
+   TOKEN_IF
+   TOKEN_LET
+   TOKEN_IN
+   TOKEN_SKIP
+   TOKEN_ELSE
+   TOKEN_THEN
+   TOKEN_WHILE
+   TOKEN_DO
+   TOKEN_READ
+   TOKEN_WRITE
+   TOKEN_FOR
+   TOKEN_RETURN
+   TOKEN_BREAK
+   TOKEN_END
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: status_int
+    2  | S status_string
+    3  | S status_bool
+    4  | S status_double
+
+    5 status_int: izraz_int TOKEN_TACKA_ZAREZ
+    6           | TOKEN_ID TOKEN_JEDNAKO izraz_int TOKEN_TACKA_ZAREZ
+
+    7 status_string: izraz_string TOKEN_TACKA_ZAREZ
+    8              | TOKEN_ID TOKEN_JEDNAKO izraz_string TOKEN_TACKA_ZAREZ
+
+    9 status_bool: izraz_bool TOKEN_TACKA_ZAREZ
+   10            | TOKEN_ID TOKEN_JEDNAKO izraz_bool TOKEN_TACKA_ZAREZ
+
+   11 status_double: izraz_double TOKEN_TACKA_ZAREZ
+   12              | TOKEN_ID TOKEN_JEDNAKO izraz_double TOKEN_TACKA_ZAREZ
+
+   13 izraz_int: izraz_int TOKEN_PLUS izraz_int
+   14          | izraz_int TOKEN_MINUS izraz_int
+   15          | izraz_int TOKEN_PUTA izraz_int
+   16          | izraz_int TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int TOKEN_MOD izraz_int
+   18          | izraz_int TOKEN_I izraz_int
+   19          | izraz_int TOKEN_ILI izraz_int
+   20          | TOKEN_OTVORENA_ZAGRADA izraz_int TOKEN_ZATVORENA_ZAGRADA
+   21          | TOKEN_VRIJEDNOST_INT
+
+   22 izraz_double: izraz_double TOKEN_PLUS izraz_double
+   23             | izraz_double TOKEN_MINUS izraz_double
+   24             | izraz_double TOKEN_PUTA izraz_double
+   25             | izraz_double TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double TOKEN_I izraz_double
+   27             | izraz_double TOKEN_ILI izraz_double
+   28             | TOKEN_OTVORENA_ZAGRADA izraz_double TOKEN_ZATVORENA_ZAGRADA
+   29             | TOKEN_VRIJEDNOST_DOUBLE
+
+   30 izraz_bool: izraz_bool TOKEN_ILI izraz_bool
+   31           | izraz_bool TOKEN_I izraz_bool
+   32           | TOKEN_VRIJEDNOST_BOOL
+
+   33 izraz_string: TOKEN_VRIJEDNOST_STRING
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+TOKEN_INT (258)
+TOKEN_STRING (259)
+TOKEN_DOUBLE (260)
+TOKEN_BOOL (261)
+TOKEN_VRIJEDNOST_INT (262) 21
+TOKEN_VRIJEDNOST_STRING (263) 33
+TOKEN_VRIJEDNOST_DOUBLE (264) 29
+TOKEN_VRIJEDNOST_BOOL (265) 32
+TOKEN_NIJE (266)
+TOKEN_PUTA (267) 15 24
+TOKEN_PODIJELJENO (268) 16 25
+TOKEN_MOD (269) 17
+TOKEN_PLUS (270) 13 22
+TOKEN_MINUS (271) 14 23
+TOKEN_MANJE (272)
+TOKEN_MANJE_JEDNAKO (273)
+TOKEN_VECE (274)
+TOKEN_VECE_JEDNAKO (275)
+TOKEN_JE_JEDNAKO (276)
+TOKEN_NIJE_JEDNAKO (277)
+TOKEN_I (278) 18 26 31
+TOKEN_ILI (279) 19 27 30
+TOKEN_JEDNAKO (280) 6 8 10 12
+TOKEN_TACKA_ZAREZ (281) 5 6 7 8 9 10 11 12
+TOKEN_ZAREZ (282)
+TOKEN_TACKA (283)
+TOKEN_OTVORENA_ZAGRADA (284) 20 28
+TOKEN_ZATVORENA_ZAGRADA (285) 20 28
+TOKEN_IF (286)
+TOKEN_LET (287)
+TOKEN_IN (288)
+TOKEN_SKIP (289)
+TOKEN_ELSE (290)
+TOKEN_THEN (291)
+TOKEN_WHILE (292)
+TOKEN_DO (293)
+TOKEN_READ (294)
+TOKEN_WRITE (295)
+TOKEN_FOR (296)
+TOKEN_RETURN (297)
+TOKEN_BREAK (298)
+TOKEN_END (299)
+TOKEN_ID (300) 6 8 10 12
+
+
+Nonterminals, with rules where they appear
+
+$accept (46)
+    on left: 0
+S (47)
+    on left: 1 2 3 4, on right: 0 2 3 4
+status_int (48)
+    on left: 5 6, on right: 1
+status_string (49)
+    on left: 7 8, on right: 2
+status_bool (50)
+    on left: 9 10, on right: 3
+status_double (51)
+    on left: 11 12, on right: 4
+izraz_int (52)
+    on left: 13 14 15 16 17 18 19 20 21, on right: 5 6 13 14 15 16
+    17 18 19 20
+izraz_double (53)
+    on left: 22 23 24 25 26 27 28 29, on right: 11 12 22 23 24 25 26
+    27 28
+izraz_bool (54)
+    on left: 30 31 32, on right: 9 10 30 31
+izraz_string (55)
+    on left: 33, on right: 7 8
+
+
+state 0
+
+    0 $accept: . S $end
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+    TOKEN_ID                shift, and go to state 3
+
+    S           go to state 4
+    status_int  go to state 5
+    izraz_int   go to state 6
+
+
+state 1
+
+   21 izraz_int: TOKEN_VRIJEDNOST_INT .
+
+    $default  reduce using rule 21 (izraz_int)
+
+
+state 2
+
+   20 izraz_int: TOKEN_OTVORENA_ZAGRADA . izraz_int TOKEN_ZATVORENA_ZAGRADA
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 7
+
+
+state 3
+
+    6 status_int: TOKEN_ID . TOKEN_JEDNAKO izraz_int TOKEN_TACKA_ZAREZ
+
+    TOKEN_JEDNAKO  shift, and go to state 8
+
+
+state 4
+
+    0 $accept: S . $end
+    2 S: S . status_string
+    3  | S . status_bool
+    4  | S . status_double
+
+    $end                     shift, and go to state 9
+    TOKEN_VRIJEDNOST_STRING  shift, and go to state 10
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_VRIJEDNOST_BOOL    shift, and go to state 12
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+    TOKEN_ID                 shift, and go to state 14
+
+    status_string  go to state 15
+    status_bool    go to state 16
+    status_double  go to state 17
+    izraz_double   go to state 18
+    izraz_bool     go to state 19
+    izraz_string   go to state 20
+
+
+state 5
+
+    1 S: status_int .
+
+    $default  reduce using rule 1 (S)
+
+
+state 6
+
+    5 status_int: izraz_int . TOKEN_TACKA_ZAREZ
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    TOKEN_PUTA         shift, and go to state 21
+    TOKEN_PODIJELJENO  shift, and go to state 22
+    TOKEN_MOD          shift, and go to state 23
+    TOKEN_PLUS         shift, and go to state 24
+    TOKEN_MINUS        shift, and go to state 25
+    TOKEN_I            shift, and go to state 26
+    TOKEN_ILI          shift, and go to state 27
+    TOKEN_TACKA_ZAREZ  shift, and go to state 28
+
+
+state 7
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+   20          | TOKEN_OTVORENA_ZAGRADA izraz_int . TOKEN_ZATVORENA_ZAGRADA
+
+    TOKEN_PUTA               shift, and go to state 21
+    TOKEN_PODIJELJENO        shift, and go to state 22
+    TOKEN_MOD                shift, and go to state 23
+    TOKEN_PLUS               shift, and go to state 24
+    TOKEN_MINUS              shift, and go to state 25
+    TOKEN_I                  shift, and go to state 26
+    TOKEN_ILI                shift, and go to state 27
+    TOKEN_ZATVORENA_ZAGRADA  shift, and go to state 29
+
+
+state 8
+
+    6 status_int: TOKEN_ID TOKEN_JEDNAKO . izraz_int TOKEN_TACKA_ZAREZ
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 30
+
+
+state 9
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 10
+
+   33 izraz_string: TOKEN_VRIJEDNOST_STRING .
+
+    $default  reduce using rule 33 (izraz_string)
+
+
+state 11
+
+   29 izraz_double: TOKEN_VRIJEDNOST_DOUBLE .
+
+    $default  reduce using rule 29 (izraz_double)
+
+
+state 12
+
+   32 izraz_bool: TOKEN_VRIJEDNOST_BOOL .
+
+    $default  reduce using rule 32 (izraz_bool)
+
+
+state 13
+
+   28 izraz_double: TOKEN_OTVORENA_ZAGRADA . izraz_double TOKEN_ZATVORENA_ZAGRADA
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 31
+
+
+state 14
+
+    8 status_string: TOKEN_ID . TOKEN_JEDNAKO izraz_string TOKEN_TACKA_ZAREZ
+   10 status_bool: TOKEN_ID . TOKEN_JEDNAKO izraz_bool TOKEN_TACKA_ZAREZ
+   12 status_double: TOKEN_ID . TOKEN_JEDNAKO izraz_double TOKEN_TACKA_ZAREZ
+
+    TOKEN_JEDNAKO  shift, and go to state 32
+
+
+state 15
+
+    2 S: S status_string .
+
+    $default  reduce using rule 2 (S)
+
+
+state 16
+
+    3 S: S status_bool .
+
+    $default  reduce using rule 3 (S)
+
+
+state 17
+
+    4 S: S status_double .
+
+    $default  reduce using rule 4 (S)
+
+
+state 18
+
+   11 status_double: izraz_double . TOKEN_TACKA_ZAREZ
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    TOKEN_PUTA         shift, and go to state 33
+    TOKEN_PODIJELJENO  shift, and go to state 34
+    TOKEN_PLUS         shift, and go to state 35
+    TOKEN_MINUS        shift, and go to state 36
+    TOKEN_I            shift, and go to state 37
+    TOKEN_ILI          shift, and go to state 38
+    TOKEN_TACKA_ZAREZ  shift, and go to state 39
+
+
+state 19
+
+    9 status_bool: izraz_bool . TOKEN_TACKA_ZAREZ
+   30 izraz_bool: izraz_bool . TOKEN_ILI izraz_bool
+   31           | izraz_bool . TOKEN_I izraz_bool
+
+    TOKEN_I            shift, and go to state 40
+    TOKEN_ILI          shift, and go to state 41
+    TOKEN_TACKA_ZAREZ  shift, and go to state 42
+
+
+state 20
+
+    7 status_string: izraz_string . TOKEN_TACKA_ZAREZ
+
+    TOKEN_TACKA_ZAREZ  shift, and go to state 43
+
+
+state 21
+
+   15 izraz_int: izraz_int TOKEN_PUTA . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 44
+
+
+state 22
+
+   16 izraz_int: izraz_int TOKEN_PODIJELJENO . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 45
+
+
+state 23
+
+   17 izraz_int: izraz_int TOKEN_MOD . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 46
+
+
+state 24
+
+   13 izraz_int: izraz_int TOKEN_PLUS . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 47
+
+
+state 25
+
+   14 izraz_int: izraz_int TOKEN_MINUS . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 48
+
+
+state 26
+
+   18 izraz_int: izraz_int TOKEN_I . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 49
+
+
+state 27
+
+   19 izraz_int: izraz_int TOKEN_ILI . izraz_int
+
+    TOKEN_VRIJEDNOST_INT    shift, and go to state 1
+    TOKEN_OTVORENA_ZAGRADA  shift, and go to state 2
+
+    izraz_int  go to state 50
+
+
+state 28
+
+    5 status_int: izraz_int TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 5 (status_int)
+
+
+state 29
+
+   20 izraz_int: TOKEN_OTVORENA_ZAGRADA izraz_int TOKEN_ZATVORENA_ZAGRADA .
+
+    $default  reduce using rule 20 (izraz_int)
+
+
+state 30
+
+    6 status_int: TOKEN_ID TOKEN_JEDNAKO izraz_int . TOKEN_TACKA_ZAREZ
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    TOKEN_PUTA         shift, and go to state 21
+    TOKEN_PODIJELJENO  shift, and go to state 22
+    TOKEN_MOD          shift, and go to state 23
+    TOKEN_PLUS         shift, and go to state 24
+    TOKEN_MINUS        shift, and go to state 25
+    TOKEN_I            shift, and go to state 26
+    TOKEN_ILI          shift, and go to state 27
+    TOKEN_TACKA_ZAREZ  shift, and go to state 51
+
+
+state 31
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+   28             | TOKEN_OTVORENA_ZAGRADA izraz_double . TOKEN_ZATVORENA_ZAGRADA
+
+    TOKEN_PUTA               shift, and go to state 33
+    TOKEN_PODIJELJENO        shift, and go to state 34
+    TOKEN_PLUS               shift, and go to state 35
+    TOKEN_MINUS              shift, and go to state 36
+    TOKEN_I                  shift, and go to state 37
+    TOKEN_ILI                shift, and go to state 38
+    TOKEN_ZATVORENA_ZAGRADA  shift, and go to state 52
+
+
+state 32
+
+    8 status_string: TOKEN_ID TOKEN_JEDNAKO . izraz_string TOKEN_TACKA_ZAREZ
+   10 status_bool: TOKEN_ID TOKEN_JEDNAKO . izraz_bool TOKEN_TACKA_ZAREZ
+   12 status_double: TOKEN_ID TOKEN_JEDNAKO . izraz_double TOKEN_TACKA_ZAREZ
+
+    TOKEN_VRIJEDNOST_STRING  shift, and go to state 10
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_VRIJEDNOST_BOOL    shift, and go to state 12
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 53
+    izraz_bool    go to state 54
+    izraz_string  go to state 55
+
+
+state 33
+
+   24 izraz_double: izraz_double TOKEN_PUTA . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 56
+
+
+state 34
+
+   25 izraz_double: izraz_double TOKEN_PODIJELJENO . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 57
+
+
+state 35
+
+   22 izraz_double: izraz_double TOKEN_PLUS . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 58
+
+
+state 36
+
+   23 izraz_double: izraz_double TOKEN_MINUS . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 59
+
+
+state 37
+
+   26 izraz_double: izraz_double TOKEN_I . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 60
+
+
+state 38
+
+   27 izraz_double: izraz_double TOKEN_ILI . izraz_double
+
+    TOKEN_VRIJEDNOST_DOUBLE  shift, and go to state 11
+    TOKEN_OTVORENA_ZAGRADA   shift, and go to state 13
+
+    izraz_double  go to state 61
+
+
+state 39
+
+   11 status_double: izraz_double TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 11 (status_double)
+
+
+state 40
+
+   31 izraz_bool: izraz_bool TOKEN_I . izraz_bool
+
+    TOKEN_VRIJEDNOST_BOOL  shift, and go to state 12
+
+    izraz_bool  go to state 62
+
+
+state 41
+
+   30 izraz_bool: izraz_bool TOKEN_ILI . izraz_bool
+
+    TOKEN_VRIJEDNOST_BOOL  shift, and go to state 12
+
+    izraz_bool  go to state 63
+
+
+state 42
+
+    9 status_bool: izraz_bool TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 9 (status_bool)
+
+
+state 43
+
+    7 status_string: izraz_string TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 7 (status_string)
+
+
+state 44
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   15          | izraz_int TOKEN_PUTA izraz_int .
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 15 (izraz_int)
+
+
+state 45
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   16          | izraz_int TOKEN_PODIJELJENO izraz_int .
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 16 (izraz_int)
+
+
+state 46
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   17          | izraz_int TOKEN_MOD izraz_int .
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 17 (izraz_int)
+
+
+state 47
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   13          | izraz_int TOKEN_PLUS izraz_int .
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 13 (izraz_int)
+
+
+state 48
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   14          | izraz_int TOKEN_MINUS izraz_int .
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 14 (izraz_int)
+
+
+state 49
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   18          | izraz_int TOKEN_I izraz_int .
+   19          | izraz_int . TOKEN_ILI izraz_int
+
+    $default  reduce using rule 18 (izraz_int)
+
+
+state 50
+
+   13 izraz_int: izraz_int . TOKEN_PLUS izraz_int
+   14          | izraz_int . TOKEN_MINUS izraz_int
+   15          | izraz_int . TOKEN_PUTA izraz_int
+   16          | izraz_int . TOKEN_PODIJELJENO izraz_int
+   17          | izraz_int . TOKEN_MOD izraz_int
+   18          | izraz_int . TOKEN_I izraz_int
+   19          | izraz_int . TOKEN_ILI izraz_int
+   19          | izraz_int TOKEN_ILI izraz_int .
+
+    $default  reduce using rule 19 (izraz_int)
+
+
+state 51
+
+    6 status_int: TOKEN_ID TOKEN_JEDNAKO izraz_int TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 6 (status_int)
+
+
+state 52
+
+   28 izraz_double: TOKEN_OTVORENA_ZAGRADA izraz_double TOKEN_ZATVORENA_ZAGRADA .
+
+    $default  reduce using rule 28 (izraz_double)
+
+
+state 53
+
+   12 status_double: TOKEN_ID TOKEN_JEDNAKO izraz_double . TOKEN_TACKA_ZAREZ
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    TOKEN_PUTA         shift, and go to state 33
+    TOKEN_PODIJELJENO  shift, and go to state 34
+    TOKEN_PLUS         shift, and go to state 35
+    TOKEN_MINUS        shift, and go to state 36
+    TOKEN_I            shift, and go to state 37
+    TOKEN_ILI          shift, and go to state 38
+    TOKEN_TACKA_ZAREZ  shift, and go to state 64
+
+
+state 54
+
+   10 status_bool: TOKEN_ID TOKEN_JEDNAKO izraz_bool . TOKEN_TACKA_ZAREZ
+   30 izraz_bool: izraz_bool . TOKEN_ILI izraz_bool
+   31           | izraz_bool . TOKEN_I izraz_bool
+
+    TOKEN_I            shift, and go to state 40
+    TOKEN_ILI          shift, and go to state 41
+    TOKEN_TACKA_ZAREZ  shift, and go to state 65
+
+
+state 55
+
+    8 status_string: TOKEN_ID TOKEN_JEDNAKO izraz_string . TOKEN_TACKA_ZAREZ
+
+    TOKEN_TACKA_ZAREZ  shift, and go to state 66
+
+
+state 56
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   24             | izraz_double TOKEN_PUTA izraz_double .
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    $default  reduce using rule 24 (izraz_double)
+
+
+state 57
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   25             | izraz_double TOKEN_PODIJELJENO izraz_double .
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    $default  reduce using rule 25 (izraz_double)
+
+
+state 58
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   22             | izraz_double TOKEN_PLUS izraz_double .
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    $default  reduce using rule 22 (izraz_double)
+
+
+state 59
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   23             | izraz_double TOKEN_MINUS izraz_double .
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    $default  reduce using rule 23 (izraz_double)
+
+
+state 60
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   26             | izraz_double TOKEN_I izraz_double .
+   27             | izraz_double . TOKEN_ILI izraz_double
+
+    $default  reduce using rule 26 (izraz_double)
+
+
+state 61
+
+   22 izraz_double: izraz_double . TOKEN_PLUS izraz_double
+   23             | izraz_double . TOKEN_MINUS izraz_double
+   24             | izraz_double . TOKEN_PUTA izraz_double
+   25             | izraz_double . TOKEN_PODIJELJENO izraz_double
+   26             | izraz_double . TOKEN_I izraz_double
+   27             | izraz_double . TOKEN_ILI izraz_double
+   27             | izraz_double TOKEN_ILI izraz_double .
+
+    $default  reduce using rule 27 (izraz_double)
+
+
+state 62
+
+   30 izraz_bool: izraz_bool . TOKEN_ILI izraz_bool
+   31           | izraz_bool . TOKEN_I izraz_bool
+   31           | izraz_bool TOKEN_I izraz_bool .
+
+    $default  reduce using rule 31 (izraz_bool)
+
+
+state 63
+
+   30 izraz_bool: izraz_bool . TOKEN_ILI izraz_bool
+   30           | izraz_bool TOKEN_ILI izraz_bool .
+   31           | izraz_bool . TOKEN_I izraz_bool
+
+    $default  reduce using rule 30 (izraz_bool)
+
+
+state 64
+
+   12 status_double: TOKEN_ID TOKEN_JEDNAKO izraz_double TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 12 (status_double)
+
+
+state 65
+
+   10 status_bool: TOKEN_ID TOKEN_JEDNAKO izraz_bool TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 10 (status_bool)
+
+
+state 66
+
+    8 status_string: TOKEN_ID TOKEN_JEDNAKO izraz_string TOKEN_TACKA_ZAREZ .
+
+    $default  reduce using rule 8 (status_string)
