@@ -20,4 +20,5 @@ rad < test.txt
 0x0;
 0X12aE;
 0X0012aE;
+asd"
 

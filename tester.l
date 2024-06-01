@@ -7,6 +7,7 @@
 
 
     int brojac =1;
+    int greske =0;
 %}
 
 %x komJedna
@@ -21,7 +22,7 @@
 
 
 
-\"[^\n\"]*\"    {printf("string -> %s", yytext);}
+\"[^\n\"]*\"    {}
 
 "+"         {return TOKEN_PLUS;}
 "-"         {return TOKEN_MINUS;}
@@ -50,7 +51,7 @@
         }
 
 "/*"    {   
-            printf("Pocetak viselinijskog komentara na liniji -> %d\n", brojac);
+            
             BEGIN(ViseKom);
         }
 
@@ -77,26 +78,28 @@
 
 ([0-9]*)                                    {
                                             int broj = atoi(yytext);
-                                            
+                                            yylval.vr_int = broj;
                                             return TOKEN_VRIJEDNOST_INT;}
 
 (0x|0X)[0-9A-Fa-f]*                         {
                                             int broj = strtol(yytext+2, NULL, 16);
-                                            
+                                            yylval.vr_int = broj;
                                             return TOKEN_VRIJEDNOST_INT;}
 
 [a-zA-Z_][a-zA-Z0-9_]{0,29}                 {return TOKEN_VRIJEDNOST_STRING;}
 [0-9]+\.[0-9]*                              {
-                                               
+                                                double broj = atof(yytext);
+                                                yylval.vr_double = broj;                                         
                                                 return TOKEN_VRIJEDNOST_DOUBLE;}
 ([0-9]*)\.[0-9]*[eE][+-]?[0-9]?             {
-                                                
+                                                double broj = atof(yytext);
+                                                yylval.vr_double = broj;
                                                 return TOKEN_VRIJEDNOST_DOUBLE;}
 
 <komJedna>{
 
 "\n"    {
-            printf("zakomentarisana linija broj -> %d\n", brojac);
+           
             brojac++;
             BEGIN(INITIAL);
         }
@@ -110,7 +113,7 @@
 
 
 "*/"            {
-                    printf("Kraj viselinijskog komentara na liniji -> %d\n", brojac);
+                    
                     BEGIN(INITIAL);
                 }
 "\n"            { 
