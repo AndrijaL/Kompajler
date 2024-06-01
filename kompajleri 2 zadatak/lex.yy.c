@@ -506,9 +506,9 @@ static char *yy_last_accepting_cpos;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scanner.l"
+#line 1 "tester.l"
 #define INITIAL 0
-#line 2 "scanner.l"
+#line 2 "tester.l"
     #include <string.h>
     #include <stdio.h>
     #include <stdlib.h>
@@ -673,7 +673,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 16 "scanner.l"
+#line 16 "tester.l"
 
 
 #line 680 "lex.yy.c"
@@ -761,129 +761,129 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 18 "scanner.l"
+#line 18 "tester.l"
 {brojac++;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 19 "scanner.l"
+#line 19 "tester.l"
 {}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "scanner.l"
+#line 25 "tester.l"
 {}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "scanner.l"
+#line 27 "tester.l"
 {return TOKEN_PLUS;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 28 "scanner.l"
+#line 28 "tester.l"
 {return TOKEN_MINUS;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "scanner.l"
+#line 29 "tester.l"
 {return TOKEN_PUTA;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 30 "scanner.l"
+#line 30 "tester.l"
 {return TOKEN_PODIJELJENO;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "scanner.l"
+#line 31 "tester.l"
 {return TOKEN_MOD;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 32 "scanner.l"
+#line 32 "tester.l"
 {return TOKEN_MANJE;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 33 "scanner.l"
+#line 33 "tester.l"
 {return TOKEN_MANJE_JEDNAKO;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 34 "scanner.l"
+#line 34 "tester.l"
 {return TOKEN_VECE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 35 "scanner.l"
+#line 35 "tester.l"
 {return TOKEN_VECE_JEDNAKO;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "scanner.l"
+#line 36 "tester.l"
 {return TOKEN_JEDNAKO;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "scanner.l"
+#line 37 "tester.l"
 {return TOKEN_JE_JEDNAKO;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "scanner.l"
+#line 38 "tester.l"
 {return TOKEN_NIJE_JEDNAKO;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 39 "scanner.l"
+#line 39 "tester.l"
 {return TOKEN_I;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 40 "scanner.l"
+#line 40 "tester.l"
 {return TOKEN_ILI;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 41 "scanner.l"
+#line 41 "tester.l"
 {return TOKEN_NIJE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "scanner.l"
+#line 42 "tester.l"
 {return TOKEN_TACKA_ZAREZ;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 43 "scanner.l"
+#line 43 "tester.l"
 {return TOKEN_ZAREZ;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "scanner.l"
+#line 44 "tester.l"
 {return TOKEN_TACKA;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 45 "scanner.l"
+#line 45 "tester.l"
 {return TOKEN_OTVORENA_ZAGRADA;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 46 "scanner.l"
+#line 46 "tester.l"
 {return TOKEN_ZATVORENA_ZAGRADA;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 49 "scanner.l"
+#line 49 "tester.l"
 {  
             BEGIN(komJedna);
         }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 53 "scanner.l"
+#line 53 "tester.l"
 {   
             
             BEGIN(ViseKom);
@@ -891,97 +891,97 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 60 "scanner.l"
+#line 60 "tester.l"
 {return TOKEN_INT;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 61 "scanner.l"
+#line 61 "tester.l"
 {return TOKEN_STRING;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 62 "scanner.l"
+#line 62 "tester.l"
 {return TOKEN_BOOL;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 63 "scanner.l"
+#line 63 "tester.l"
 {return TOKEN_DOUBLE;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 64 "scanner.l"
+#line 64 "tester.l"
 {return TOKEN_IF;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 65 "scanner.l"
+#line 65 "tester.l"
 {return TOKEN_LET;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 66 "scanner.l"
+#line 66 "tester.l"
 {return TOKEN_IN;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 67 "scanner.l"
+#line 67 "tester.l"
 {return TOKEN_SKIP;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 68 "scanner.l"
+#line 68 "tester.l"
 {return TOKEN_ELSE;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 69 "scanner.l"
+#line 69 "tester.l"
 {return TOKEN_THEN;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 70 "scanner.l"
+#line 70 "tester.l"
 {return TOKEN_WHILE;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 71 "scanner.l"
+#line 71 "tester.l"
 {return TOKEN_DO;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 72 "scanner.l"
+#line 72 "tester.l"
 {return TOKEN_READ;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 73 "scanner.l"
+#line 73 "tester.l"
 {return TOKEN_WRITE;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 74 "scanner.l"
+#line 74 "tester.l"
 {return TOKEN_FOR;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 75 "scanner.l"
+#line 75 "tester.l"
 {return TOKEN_RETURN;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 76 "scanner.l"
+#line 76 "tester.l"
 {return TOKEN_BREAK;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 77 "scanner.l"
+#line 77 "tester.l"
 {return TOKEN_END;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 79 "scanner.l"
+#line 79 "tester.l"
 {
                                             int broj = atoi(yytext);
                                             yylval.vr_int = broj;
@@ -989,7 +989,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 84 "scanner.l"
+#line 84 "tester.l"
 {
                                             int broj = strtol(yytext+2, NULL, 16);
                                             yylval.vr_int = broj;
@@ -997,12 +997,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 89 "scanner.l"
+#line 89 "tester.l"
 {return TOKEN_VRIJEDNOST_STRING;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 90 "scanner.l"
+#line 90 "tester.l"
 {
                                                 double broj = atof(yytext);
                                                 yylval.vr_double = broj;                                         
@@ -1010,7 +1010,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 94 "scanner.l"
+#line 94 "tester.l"
 {
                                                 double broj = atof(yytext);
                                                 yylval.vr_double = broj;
@@ -1019,7 +1019,7 @@ YY_RULE_SETUP
 
 case 49:
 YY_RULE_SETUP
-#line 101 "scanner.l"
+#line 101 "tester.l"
 {
            
             brojac++;
@@ -1028,21 +1028,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 106 "scanner.l"
+#line 106 "tester.l"
 {
             printf("Pogresan ulaz, nije dozvoljeno ugnjezdavanje komentara na liniji -> %d\n", brojac);
         }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 109 "scanner.l"
+#line 109 "tester.l"
 {} 
 	YY_BREAK
 
 
 case 52:
 YY_RULE_SETUP
-#line 115 "scanner.l"
+#line 115 "tester.l"
 {
                     
                     BEGIN(INITIAL);
@@ -1050,52 +1050,52 @@ YY_RULE_SETUP
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 119 "scanner.l"
+#line 119 "tester.l"
 { 
                     brojac++;
                 }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 122 "scanner.l"
+#line 122 "tester.l"
 {
                     printf("Pogresan ulaz, nije dozvoljeno ugnjezdavanje komentara -> \n");
                 }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 125 "scanner.l"
+#line 125 "tester.l"
 {}
 	YY_BREAK
 
 case 56:
 YY_RULE_SETUP
-#line 129 "scanner.l"
+#line 129 "tester.l"
 {printf("Pogresan ulaz, nezatvoren string na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 130 "scanner.l"
+#line 130 "tester.l"
 {printf("Pogresan ulaz, pogresno upisan double na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 131 "scanner.l"
+#line 131 "tester.l"
 {printf("Pogresan ulaz, pogresno upisan double na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 132 "scanner.l"
+#line 132 "tester.l"
 {if(yyleng>31){printf("Pogresan ulaz, ime duze od dozvoljenog na liniji -> %d\n", brojac);}}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 133 "scanner.l"
+#line 133 "tester.l"
 {printf("Pogresan ulaz, neobradjeni izraz na liniji -> %d\n", brojac);}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 135 "scanner.l"
+#line 135 "tester.l"
 ECHO;
 	YY_BREAK
 #line 1102 "lex.yy.c"
@@ -1986,7 +1986,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 135 "scanner.l"
+#line 135 "tester.l"
 
 
 
